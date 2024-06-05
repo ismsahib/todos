@@ -41,6 +41,13 @@ const App = () => {
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' && inputValue.length) {
+      setData({ initialData: false, tasks: [...data.tasks, { id: uuidv4(), state: 'active', title: inputValue }] });
+      setInputValue('');
+    }
+  };
+
   const getFilteredTasksByTab = (t: 'all' | 'active' | 'completed', initialTasks: TaskData[]): TaskData[] => {
     if (t === 'active') return initialTasks.filter((v) => v.state === 'active');
     if (t === 'completed') return initialTasks.filter((v) => v.state === 'completed');
@@ -90,6 +97,7 @@ const App = () => {
             size="small"
             value={inputValue}
             onChange={handleChangeInput}
+            onKeyDown={handleKeyDown}
           />
           <Button variant="contained" size="small" disabled={inputValue.length === 0} onClick={handleClickAddNewTask}>
             Add
