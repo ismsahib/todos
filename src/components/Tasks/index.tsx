@@ -29,7 +29,7 @@ export const Tasks: React.FC<TasksProps> = ({ tasks, handleToggleState }) => {
               </ListItemIcon>
               <ListItemText
                 id={`checkbox-list-label-${task.id}`}
-                primary={<Typography>{task.title}</Typography>}
+                primary={<Typography sx={{ wordWrap: 'break-word' }}>{task.title}</Typography>}
                 sx={{
                   textDecoration: task.state === 'completed' ? 'line-through' : undefined,
                   opacity: task.state === 'completed' ? 0.6 : undefined,
